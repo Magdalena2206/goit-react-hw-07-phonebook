@@ -1,16 +1,25 @@
+import { Form } from "./Form/Form";
+import { ContactsList } from "./ContactList/ContactList";
+import { Filter } from "./Filter/Filter";
+import { Loader } from "./Loader/Loader";
+import { Error } from "./Error/Error";
+import { Container } from "./App.styled";
+import { useSelector } from "react-redux";
+import { getError, getIsLoading, getPhoneBookValue } from "../redux/phoneBookSlice";
+
 export const App = () => {
+  const isLoading = useSelector(getIsLoading);
+  const error = useSelector(getError);
+  const phoneBook = useSelector(getPhoneBookValue);
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
+    <Container>
+      <h1>Phonebook</h1>
+      <Form />
+      <h2>Contacts</h2>
+      {phoneBook.length === 0 && !error && !isLoading ? "You don't have any contacts yet" : <Filter />}
+      {isLoading && <Loader />}
+      {error ? <Error /> : <ContactsList />}
+    </Container>
+  )
 };
