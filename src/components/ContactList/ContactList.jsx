@@ -27,10 +27,10 @@ export const ContactsList = () => {
 
   return (
     <ContactListStyle>
-      {visibleContacts.map(({ name, number, id }) => (
+      {visibleContacts.map(({ name, phone, id }) => (
         <ContactItemStyle key={id}>
           <p>
-            {name}: {number}
+            {name}: {phone}
           </p>
           <ButtonStyle type="button" onClick={() => deleteContact(id)}>
             Delete

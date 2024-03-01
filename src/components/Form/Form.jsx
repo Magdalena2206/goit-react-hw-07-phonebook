@@ -15,13 +15,13 @@ export const options = {
 
 export const Form = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setNumber] = useState('');
   const dispatch = useDispatch();
   const phoneBook = useSelector(getPhoneBookValue);
 
   const onSubmitAddContact = event => {
     event.preventDefault();
-    const newObj = { name, number };
+    const newObj = { name, phone };
     // const newObj = { ...data, id: nanoid() };
 
     if (isNameNew(phoneBook, newObj) !== undefined) {
@@ -79,7 +79,7 @@ export const Form = () => {
         <InputStyle
           type="tel"
           name="number"
-          value={number}
+          value={phone}
           pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
